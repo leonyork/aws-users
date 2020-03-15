@@ -65,7 +65,7 @@ delete-users:
 
 .PHONY: rotate-access-keys
 rotate-access-keys: rotate-keys-build
-	@docker-compose run --entrypoint sh travis travis.sh '$(shell $(ROTATE_KEYS) $(shell $(USERNAME_CMD)))' $(REPO)
+	sh travis.sh '$(shell $(ROTATE_KEYS) $(shell $(USERNAME_CMD)))' $(REPO)
 
 ##########################
 # Dev targets
