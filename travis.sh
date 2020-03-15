@@ -18,7 +18,7 @@ then
     exit 1
 fi
 
-#apk add --no-cache jq > /dev/null
+apk add --no-cache jq > /dev/null
 
 ACCESS_KEY_ID=`echo $1 | jq -j .AccessKeyId`
 SECRET_ACCESS_KEY=`echo $1 | jq -j .SecretAccessKey`
