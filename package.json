@@ -1,0 +1,14 @@
+{
+  "name": "aws-users",
+  "version": "1.0.0",
+  "description": "Maintains AWS users for other projects",
+  "main": "rotate-key.js",
+  "scripts": {
+    "start": "node rotate-key.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.639.0"
+  }
+}

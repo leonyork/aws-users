@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata:
+  License: Apache-2.0
+Description: 'Create the users that are required for operation of CI/CD.
+  Note that you will need to specify the CAPABILITY_IAM flag
+  when you create the stack to allow this template to execute. You can do this through
+  the AWS management console by clicking on the check box acknowledging that you understand
+  this template creates IAM resources or by specifying the CAPABILITY_IAM flag to
+  the cfn-create-stack command line tool or CreateStack API call.'
+Resources:
+  User:
+    Type: AWS::IAM::User
+  UserGroup:
+    Type: AWS::IAM::Group
+  Users:
+    Type: AWS::IAM::UserToGroupAddition
+    Properties:
+      GroupName: !Ref 'UserGroup'
+      Users: [!Ref 'User']
+  UserPolicies:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: Users
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Action: 
+              - 'ec2:RunInstances'
+              - 'ec2:Describe*'
+              - 'ec2:TerminateInstances'
+              - 'ec2:CreateSecurityGroup'
+              - 'ec2:AuthorizeSecurityGroupEgress'
+              - 'ec2:AuthorizeSecurityGroupIngress'
+              - 'ec2:RevokeSecurityGroupEgress'
+              - 'ec2:RevokeSecurityGroupIngress'
+              - 'ec2:DeleteSecurityGroup'
+          Resource: '*'
+      Groups: [!Ref 'UserGroup']
+Outputs:
+  Username:
+    Value: !Ref 'User'
+    Description: Username for the new user
