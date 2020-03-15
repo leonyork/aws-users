@@ -7,5 +7,6 @@ branches:
   only:
     - master
 script:
+  - make travis-login-auto
   - make deploy-users
   - make rotate-access-keys

@@ -37,6 +37,7 @@ COMMIT_LINT=docker run --rm -v $(CURDIR)/.git:/app/.git -v $(CURDIR)/commitlint.
 DEPLOY_USERS_CMD=$(AWS_CLI) cloudformation deploy \
 		--template-file users.yml \
 		--stack-name $(STACK_NAME) \
+		--no-fail-on-empty-changeset \
 		--capabilities CAPABILITY_IAM \
 		--region $(REGION)
 
@@ -79,6 +80,10 @@ commit-lint:
 .PHONY: travis-login
 travis-login:
 	$(TRAVIS) login $(TRAVIS_ARGS)
+
+.PHONY: travis-login-auto
+travis-login-auto:
+	$(TRAVIS) login $(TRAVIS_ARGS) --auto --no-manual
 
 .PHONY: travis-sh
 travis-sh:
