@@ -7,9 +7,6 @@ branches:
   only:
     - master
 script:
-  # install travis cli
-  - gem install --no-document travis
-  # setup travis shell autocomplete
-  - echo "y" | travis --version
+  - make travis-login-auto
   - make deploy-users
   - make rotate-access-keys

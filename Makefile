@@ -65,7 +65,7 @@ delete-users:
 
 .PHONY: rotate-access-keys
 rotate-access-keys: rotate-keys-build
-	sh travis.sh '$(shell $(ROTATE_KEYS) $(shell $(USERNAME_CMD)))' $(REPO)
+	@docker-compose run --entrypoint sh travis travis.sh '$(shell $(ROTATE_KEYS) $(shell $(USERNAME_CMD)))' $(REPO)
 
 ##########################
 # Dev targets
@@ -83,7 +83,7 @@ travis-login:
 
 .PHONY: travis-login-auto
 travis-login-auto:
-	$(TRAVIS) login $(TRAVIS_ARGS) --auto --no-manual
+	@$(TRAVIS) login $(TRAVIS_ARGS) --auto --no-manual --github-token $(GITHUB_TOKEN)
 
 .PHONY: travis-sh
 travis-sh:
