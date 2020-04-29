@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   travis:
-    image: leonyork/travis:1.8.11-ruby2.7.0-alpine3.11
+    image: leonyork/travis:1.9.0-ruby2.7.1-alpine3.11
     working_dir: /app
     volumes: 
       - ~/.travis:/root
